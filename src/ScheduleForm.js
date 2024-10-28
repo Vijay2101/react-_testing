@@ -26,7 +26,7 @@ function ScheduleForm() {
     try {
       console.log("Sending data:", formData); // Log the form data being sent
 
-      const response = await fetch("https://ec2-3-106-229-17.ap-southeast-2.compute.amazonaws.com/zoom/callback", {
+      const response = await fetch("https://employoai.zapto.org/create_event", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
