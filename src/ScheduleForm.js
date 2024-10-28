@@ -12,7 +12,7 @@ function ScheduleForm() {
     date: "",
     platform: "",
     attendees: "",
-    email_preview: ""
+    email_preview: "",
   });
 
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function ScheduleForm() {
     try {
       console.log("Sending data:", formData); // Log the form data being sent
 
-      const response = await fetch("https://ec2-3-106-229-17.ap-southeast-2.compute.amazonaws.com/create_event", {
+      const response = await fetch("https://ec2-3-106-229-17.ap-southeast-2.compute.amazonaws.com/zoom/callback", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -36,11 +36,7 @@ function ScheduleForm() {
         body: new URLSearchParams(formData), // Convert form data to URLSearchParams
       });
 
-      if (response.redirected) {
-        // If the response indicates a redirection, handle it here
-        console.log("Redirecting to:", response.url);
-        window.location.href = response.url; // Redirect to the new URL
-      } else if (response.ok) {
+      if (response.ok) {
         const data = await response.json(); // Assuming the API returns JSON on success
         console.log("Meeting scheduled successfully:", data);
         navigate("/home"); // Redirect to the home page on success
